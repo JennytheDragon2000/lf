@@ -56,7 +56,9 @@ cmd restore_trash ${{
 }}
 
 cmd open ${{ 
-case $(file --mime-type "$f" -bL) in video/*) mpv "$f" >/dev/null; clear;; esac 
+# case $(file --mime-type "$f" -bL) in video/*) mpv "$f" >/dev/null; clear;; esac 
+case $(file --mime-type "$f" -bL) in video/*) setsid mpv "$f" >/dev/null 2>&1 & ;; esac 
+# case $(file --mime-type "$f" -bL) in video/*) setsid mpv $f > /dev/null 2 2>&1 & ;;
 case $(file --mime-type "$f" -bL) in application/pdf) zathura "$f" >/dev/null; clear;; esac 
 }}
 
